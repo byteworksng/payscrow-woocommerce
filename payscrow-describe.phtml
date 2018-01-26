@@ -1,0 +1,43 @@
+  <div id="payscrow_logo">
+        <style>
+.payscrow-body{
+padding:10px 5px 10px;
+position:relative;
+top: 0;
+width:100%;
+background-color:#fff;
+border:1px solid #f1efef
+}
+
+
+.payscrow-content p{
+color: inherit;
+line-height: 16px;
+font-weight: 400;
+padding-top:5px ;
+font-size: 12px;
+}
+.payscrow-content p:nth-child(2){
+color: #9a9a9a;
+font-size: 10px;
+line-height:inherit;
+}
+@media screen and (max-width: 600px){
+.payscrow-body{
+height: 110px
+}
+.payscrow-content{
+float: left;
+}
+}
+</style>
+<div  class="payscrow-body">
+<div class="payscrow-content">
+<p>Secure your funds till items are delivered</p>
+<p><?= $charges ?></p>
+</div>
+</div>
+</div>
+<!--<script>-->
+<!--document.getElementById("payscrow_logo").previousSibling.remove();-->
+<!--</script>-->

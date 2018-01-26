@@ -41,8 +41,8 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
         //woo required constructs
         $this->id = 'payscrow';
 
-        $this->has_fields = false;
-        $this->method_title = __( 'payscrow', 'woocommerce' );
+        $this->has_fields = true;
+        $this->method_title = __( 'PayScrow', 'woocommerce' );
         $this->method_description = __(
             'Provides safe payment processing with the PayScrow Premium Escrow Service', 'woocommerce'
         );
@@ -60,7 +60,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
         // Define user set variables
         $this->title = $this->get_option( 'title' );
         $this->merchant_id = $this->get_option( 'merchant_id' );
-        $this->description = $this->get_option( 'description' );
+        $this->description = $this->checkout_custom_display();//$this->get_option( 'description' );
         $this->test_mode = $this->get_option( 'test_mode' );
         $this->debug = $this->get_option( 'debug' );
         $this->invoice_prefix = $this->get_option( 'invoice_prefix', 'WC-' );
@@ -80,12 +80,10 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
         {
             if (  'yes' == $this->show_black_logo )
             {
-                $this->icon = "https://payscrow.net/assets/logos/logo-black.png";//plugins_url() . '/fidelity-interswitch-payment-gateway/assets/images/fidelity-paygate.jpg';
+                $this->icon = "https://payscrow.net/assets/logos/logo-black.png";
             }
-            else $this->icon = "https://payscrow.net/assets/logos/logo.png";//plugins_url() . '/fidelity-interswitch-payment-gateway/assets/images/fidelity-paygate.jpg';
+            else $this->icon = "https://payscrow.net/assets/logos/logo.png";
 
-
-//$this->icon =  $label;
         }
 
         // Logs
@@ -162,53 +160,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
      */
     public function init_form_fields()
     {
-        $charges = $this->getGatewayCharges();
 
-        $label = <<<EOD
-        <div id="payscrow_logo">
-        <style>
-.payscrow-body{
-padding:10px 5px 10px;
-position:relative;
-top: 0;
-width:100%;
-background-color:#fff;
-border:1px solid #f1efef
-}
-
-
-.payscrow-content p{
-color: inherit;
-line-height: 16px;
-font-weight: 400;
-padding-top:5px ;
-font-size: 12px;
-}
-.payscrow-content p:nth-child(2){
-color: #9a9a9a;
-font-size: 10px;
-line-height:inherit;
-}
-@media screen and (max-width: 600px){
-.payscrow-body{
-height: 110px
-}
-.payscrow-content{
-float: left;
-}
-}
-</style>
-<div  class="payscrow-body">
-<div class="payscrow-content">
-<p>Secure your funds till items are delivered</p>
-<p>{$charges}</p>
-</div>
-</div>
-</div>
-<!--<script>-->
-<!--document.getElementById("payscrow_logo").previousSibling.remove();-->
-<!--</script>-->
-EOD;
         $this->form_fields = [
             'enabled' => [
                 'title' => __( 'Enable/Disable', 'woocommerce' ),
@@ -241,21 +193,12 @@ EOD;
                 'desc_tip' => true,
                 'label' => __( 'Use Black PayScrow Logo', 'woocommerce' ),
             ],
-            'description' => [
-                'title' => __( 'Description', 'woocommerce' ),
-                'type' => 'text',
-                'desc_tip' => true,
-                'description' => __(
-                    'This controls the description which the user sees during checkout.', 'woocommerce'
-                ),
-                'default' => __( "$label", 'woocommerce' )
-            ],
             'test_mode' => [
-                'title' => __( 'payscrow sandbox', 'woocommerce' ),
+                'title' => __( 'PayScrow sandbox', 'woocommerce' ),
                 'type' => 'checkbox',
-                'label' => __( 'Enable payscrow sandbox', 'woocommerce' ),
+                'label' => __( 'Enable PayScrow sandbox', 'woocommerce' ),
                 'default' => 'no',
-                'description' => sprintf( __( 'payscrow sandbox can be used to test payments', 'woocommerce' ) ),
+                'description' => sprintf( __( 'PayScrow sandbox can be used to test payments', 'woocommerce' ) ),
             ],
             'debug' => [
                 'title' => __( 'Debug Log', 'woocommerce' ),
@@ -263,7 +206,7 @@ EOD;
                 'label' => __( 'Enable logging', 'woocommerce' ),
                 'default' => 'false',
                 'description' => sprintf(
-                    __( 'Log payscrow events, such as requests, inside <code>%s</code>', 'woocommerce' ),
+                    __( 'Log PayScrow events, such as requests, inside <code>%s</code>', 'woocommerce' ),
                     wc_get_log_file_path( 'payscrow' )
                 )
             ],
@@ -291,13 +234,40 @@ EOD;
             ],
             'delivery_duration' => [
                 'title' => __( 'Max Delivery Duration', 'woocommerce' ),
-                'type' => 'text',
+                'type' => 'number',
                 'description' => __(
                     'Specify the maximum period it takes to deliver an order in days.', 'woocommerce'
                 ),
                 'default' => '7',
                 'desc_tip' => true
             ],
+            //  'discount' => [
+            //     'title' => __( 'Discount', 'woocommerce' ),
+            //     'type' => 'number',
+            //     'desc_tip' => true,
+            //     'description' => __(
+            //         'You can specify how much discount in percent(%) you want to grant a customer. This discount applies only on transactions paid through PayScrow.', 'woocommerce'
+            //     ),
+            //     'default' => __( "10", 'woocommerce' )
+            // ],
+            //  'discount_duration' => [
+            //     'title' => __( 'Discount Period', 'woocommerce' ),
+            //     'type' => 'number',
+            //     'desc_tip' => true,
+            //     'description' => __(
+            //         'You can specify how long in days, your discount should run', 'woocommerce'
+            //     ),
+            //     'default' => __( "30", 'woocommerce' )
+            // ],
+            //       'discount_start' => [
+            //     'title' => __( 'Discount Start Date', 'woocommerce' ),
+            //     'type' => 'date',
+            //     'desc_tip' => true,
+            //     'description' => __(
+            //         'You can specify when your discount should begin', 'woocommerce'
+            //     ),
+            //     'default' => __( "now()", 'woocommerce' )
+            // ],
         ];
     }
 
@@ -870,5 +840,15 @@ EOD;
 
         return $payscrow_args;
     }
+
+    public function checkout_custom_display(){
+        $charges = $this->getGatewayCharges();
+        @ob_start();
+        require_once(plugin_basename(  'payscrow-describe.phtml' ));
+        $label  =  @ob_get_clean();
+        return $label;
+    
+    }
+
 
 }

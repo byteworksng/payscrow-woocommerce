@@ -46,9 +46,16 @@ To install this wordpress plugin,
 5. Locate and activate the Payscrow Escrow service plugin
 
 ## Configuration ##
-Minimal config is required to get up and running. Simply go to __WooCommerce > Settings__ from the left hand menu, then click "Payment Gateways" from the top tab. You should see __"Payscrow Escrow Services"__ as an option at the top of the screen. Click on it to configure the payment gateway.
+Minimal config is required to get up and running. Simply go to __WooCommerce > Settings__ from the left hand menu, then click "Checkout" from the top tab. You should see __"PayScrow"__ as an option at the top of the screen. Click on it to configure the payment gateway.
 
-* __Access Key__  - enter your Payscrow Merchant Access key, this is gotten from your account page on [Payscrow website](https://payscrow.net).
+* __Merchant Access Key__  - enter your PayScrow Merchant Access key, this is gotten from your account page on [PayScrow website](https://payscrow.net).
+* __Max Delivery Duration__  - specify the maximum duration it might take to deliver an order. Default is 7 days
+
 * Click on __Save Changes__ for the changes you made to be effected.
 
+## Upcoming features ##
+
+* __Discount__  - You can specify how much discount in percent(%) you want to grant a customer. This discount applies only on transactions paid through PayScrow.
+* __Discount Duration__  - specify how long in days, your discount/promo should run
+* __Discount Start__  - You can specify when your discount should begin
 

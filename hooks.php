@@ -11,6 +11,9 @@ add_action('valid-payscrow-standard-confirm-request', array($this, 'process_pays
 add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
 add_action('woocommerce_receipt_payscrow', array(&$this, 'receipt_page'));
 
+
 // Payment listener/API hook
 add_action('woocommerce_api_wc_gateway_payscrow', array($this, 'check_payscrow_response'));
+
+
 
