@@ -31,13 +31,14 @@ To get started with Payscrow services and receive your unique access key, click 
 
 To install this wordpress plugin,
 
-Recommended Method
+### Recommended Method ###
 1.  Download the plugin zip archive and
 2. 	Login to your WordPress Admin. Click on "Plugins > Add New" from the left hand menu.
 3.  Click on the "Upload" option, then click "Choose File" to select the zip file from your computer. Once selected, press "OK" and press the "Install Now" button.
 4.  Activate the plugin.
 7.	Configure your "Payscrow Premuim Escrow Service" settings. See below for details.
-Alternate Method
+
+### Alternate Method ###
 1. Download the plugin zip archive and 
 2. extract this archive and 
 3. drag and drop or copy and paste the extracted folder into your wordpress plugins directory located at the "wp-content" folder in your wordpress install folder.
