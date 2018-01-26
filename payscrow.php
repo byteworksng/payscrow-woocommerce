@@ -10,7 +10,7 @@
  * Date: 5/29/16
  * Time: 10:56 PM
  * License:           GPL-2.0+
- * License URI:       http://www.byteworksng.com
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: payscrow
  * Domain Path:/lang/
  */
