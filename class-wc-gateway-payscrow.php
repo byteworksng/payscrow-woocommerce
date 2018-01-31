@@ -751,7 +751,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
                     'woocommerce_ajax_loader_url', $woocommerce->plugin_url() . '/assets/images/ajax-loader.gif'
                 )
             ) . '\" alt=\"Redirecting&hellip;\" style=\"float:left; margin-right: 10px;\" />' . __(
-                'Thank you for your order. We are now redirecting you to CIPG to make payment.', 'payscrow'
+                'Thank you for your order. We are now redirecting you to PayScrow Escrow Services to make payment.', 'payscrow'
             ) . '",
 						overlayCSS:
 						{
@@ -803,7 +803,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
             );
         }
 
-        // CIPG Args
+        // PayScrow Args
         $payscrow_args = [
             'ResponseUrl' => $this->notify_url,
             'GrandTotal' => $order->get_total(),
