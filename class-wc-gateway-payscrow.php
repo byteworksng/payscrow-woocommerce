@@ -748,7 +748,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
 				jQuery("body").block({
 						message: "<img src=\"' . esc_url(
                 apply_filters(
-                    'woocommerce_ajax_loader_url', $woocommerce->plugin_url() . '/assets/images/ajax-loader.gif'
+                    'woocommerce_ajax_loader_url', $woocommerce->plugin_url() . '/assets/images/payscrow-loader.gif'
                 )
             ) . '\" alt=\"Redirecting&hellip;\" style=\"float:left; margin-right: 10px;\" />' . __(
                 'Thank you for your order. We are now redirecting you to PayScrow Escrow Services to make payment.', 'payscrow'
