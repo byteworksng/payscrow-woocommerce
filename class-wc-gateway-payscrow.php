@@ -34,8 +34,8 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
     public function __construct()
     {
         //PayScrow required constructs
-        $this->live_url = 'https://www.payscrow.net';
-        $this->test_url = "http://payscrow.w12.wh-2.com";
+        $this->live_url = 'https://payscrow.net';
+        $this->test_url = "http://ps.ofekpc.com";
         $this->test_merchant_id = 'd1e5a982-fa05-414b-803c-b197307e4918';
 
         //woo required constructs
