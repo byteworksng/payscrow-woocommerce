@@ -831,7 +831,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
                     $payscrow_args[ "Items{$i}.Description" ] = $item->get_product()->get_short_description();
                     $payscrow_args[ "Items{$i}.Price" ] = $item->get_total();
                     $payscrow_args[ "Items{$i}.Quantity" ] = $item->get_quantity();
-                    $payscrow_args[ "Items{$i}.Deliverable" ] = $item->get_product()->is_virtual();
+                    $payscrow_args[ "Items{$i}.Deliverable" ] = $item->get_product()->is_virtual() ? '0': '1';
                     $payscrow_args[ "Items{$i}.TaxAmount" ] = $item->get_total_tax();
                     $i++;
                 }
@@ -847,7 +847,7 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
         require_once(plugin_basename(  'payscrow-describe.phtml' ));
         $label  =  @ob_get_clean();
         return $label;
-    
+
     }
 
 
