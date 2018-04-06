@@ -827,12 +827,12 @@ class WC_Gateway_Payscrow extends WC_Payment_Gateway
             {
                 if ( $item[ 'qty' ] )
                 {
-                    $payscrow_args[ "Items{$i}.Name" ] = $item->get_name();
-                    $payscrow_args[ "Items{$i}.Description" ] = $item->get_product()->get_short_description();
-                    $payscrow_args[ "Items{$i}.Price" ] = $item->get_total();
-                    $payscrow_args[ "Items{$i}.Quantity" ] = $item->get_quantity();
-                    $payscrow_args[ "Items{$i}.Deliverable" ] = $item->get_product()->is_virtual() ? '0': '1';
-                    $payscrow_args[ "Items{$i}.TaxAmount" ] = $item->get_total_tax();
+                    $payscrow_args[ "Items[{$i}].Name" ] = $item->get_name();
+                    $payscrow_args[ "Items[{$i}].Description" ] = $item->get_product()->get_short_description();
+                    $payscrow_args[ "Items[{$i}].Price" ] = $item->get_total()/$item->get_quantity();
+                    $payscrow_args[ "Items[{$i}].Quantity" ] = $item->get_quantity();
+                    $payscrow_args[ "Items[{$i}].Deliverable" ] = $item->get_product()->is_virtual() ? '0': '1';
+                    $payscrow_args[ "Items[{$i}].TaxAmount" ] = $item->get_total_tax()/$item->get_quantity();
                     $i++;
                 }
             }
